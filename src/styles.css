@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base { body { @apply m-0 bg-slate-100 font-sans text-slate-900 dark:bg-slate-950 dark:text-slate-100; } button, input, select { font: inherit; } }
+.leaflet-container { height: 100%; width: 100%; z-index: 0; }
+.vehicle-icon { background: transparent; border: 0; }
+.crew-marker { position: relative; width: 58px; height: 58px; display: grid; place-items: center; }
+.crew-marker__vehicle { position: relative; z-index: 2; display: grid; place-items: center; filter: drop-shadow(0 3px 3px rgb(15 23 42 / .65)); transition: transform .35s ease-out; }
+.crew-marker__halo, .crew-marker__pulse { position: absolute; inset: 9px; border-radius: 999px; background: rgb(37 99 235 / .32); }
+.crew-marker__halo { box-shadow: 0 0 0 3px rgb(255 255 255 / .9), 0 0 18px 5px rgb(37 99 235 / .62); }
+.crew-marker__pulse { animation: crew-pulse 1.8s ease-out infinite; }
+.crew-marker--stale { opacity: .52; }
+.crew-marker--stale .crew-marker__pulse { animation: none; background: rgb(100 116 139 / .35); }
+@keyframes crew-pulse { 0% { transform: scale(.82); opacity: .82; } 70%, 100% { transform: scale(1.7); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .crew-marker__pulse { animation: none; } .crew-marker__vehicle { transition: none; } }
+
+/* Dashboard header: stronger hierarchy and a left-anchored panel control. */
+body #root > div > header { position: relative; height: 76px; padding-inline: 20px; box-shadow: 0 2px 14px rgb(15 23 42 / .08); }
+body #root > div > header > div:first-child { display: flex; align-items: center; gap: 12px; }
+body #root > div > header > div:first-child > p { display: flex; align-items: center; gap: 10px; font-size: 1.45rem; line-height: 1; font-weight: 900; letter-spacing: .13em; color: #1d4ed8; }
+body #root > div > header > div:first-child > p::before { content: '⌖'; display: grid; width: 40px; height: 40px; place-items: center; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #06b6d4); box-shadow: 0 7px 16px rgb(37 99 235 / .3); color: white; font-size: 28px; letter-spacing: 0; }
+body #root > div > header > div:first-child > h1 { font-size: 1.1rem; font-weight: 800; color: #334155; }
+body #root > div > header + div { height: calc(100vh - 76px) !important; }
+@media (min-width: 768px) { body #root > div > header > div:first-child { margin-left: 170px; } body #root > div > header > div:last-child > button:first-child { position: absolute; left: 20px; top: 19px; border: 1px solid #cbd5e1; border-radius: 10px; padding: 9px 12px; font-weight: 700; transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; } body #root > div > header > div:last-child > button:first-child:hover { border-color: #93c5fd; background: #eff6ff; color: #1d4ed8; transform: translateY(-1px); } }
+@media (min-width: 768px) { body #root > div > header > div:last-child > button:first-child span { display: none; } }
+.dark body #root > div > header > div:first-child > p { color: #60a5fa; }
+.dark body #root > div > header > div:first-child > h1 { color: #e2e8f0; }

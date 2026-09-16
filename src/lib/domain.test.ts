@@ -1,0 +1,3 @@
+import { describe, expect, it } from 'vitest'
+import { canManageOrders, isStale, pointFromGeoJson, statusMeta } from './domain'
+describe('PexTrack domain rules', () => { it('maps every required OT state', () => expect(Object.keys(statusMeta)).toHaveLength(5)); it('only permits admin/coordinator to manage OTs', () => { expect(canManageOrders('admin')).toBe(true); expect(canManageOrders('coordinador')).toBe(true); expect(canManageOrders('tecnico')).toBe(false) }); it('flags an expired position', () => expect(isStale('2026-01-01T00:00:00.000Z', new Date('2026-01-01T00:01:01.000Z').getTime())).toBe(true)); it('converts GeoJSON longitude-latitude into map coordinates', () => expect(pointFromGeoJson({ coordinates: [-68.15, -16.5] })).toEqual({ lng: -68.15, lat: -16.5 })) })
