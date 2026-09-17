@@ -8,6 +8,7 @@
 - Seguimiento GPS simulado, historial, Realtime y señal vencida a los 60 segundos.
 - Tema claro/oscuro, pruebas unitarias y despliegue en Vercel.
 - Estructura documental, ADRs y hook de sincronización para `AGENTS.md`/`CLAUDE.md`.
+- Interfaz refinada: acceso, cabecera, panel de OTs, detalle y pestañas móviles con foco visible, contraste y movimiento reducido respetado. Los combos nativos tienen superficie y texto legibles en tema oscuro.
 
 ## Entornos
 

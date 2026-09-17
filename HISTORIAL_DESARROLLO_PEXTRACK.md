@@ -81,6 +81,10 @@ El comportamiento se adaptó por tamaño de pantalla:
 - Si una posición tiene más de 60 segundos, el vehículo se atenúa y el tooltip muestra `señal vencida`.
 - El mapa se vuelve a evaluar cada 5 segundos para reflejar señal vencida incluso si no hay nuevas actualizaciones.
 
+### 4.4 Refinamiento de interfaz
+
+Se reorganizó la presentación sin cambiar las capacidades ni la paleta de los temas claro y oscuro. El acceso ahora tiene una identidad de marca y campos con mejor jerarquía; la cabecera prioriza identidad, control del panel, simulador y cuenta. La tabla diferencia encabezado, cantidad de OTs, filas seleccionadas y estado. El detalle agrupa información y edición de manera más legible; en móvil se agregaron iconos a las pestañas y se respetan las áreas seguras. También se incorporaron foco visible para teclado y preferencia de movimiento reducido. Los mensajes operativos son avisos compactos y descartables, de modo que no cubren el mapa. Se corrigió además el menú nativo de los combos en tema oscuro: sus opciones usan una superficie oscura y texto de alto contraste.
+
 ## 5. Autenticación y autorización (HU-01)
 
 ### 5.1 Modo demo y modo real

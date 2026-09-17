@@ -25,6 +25,12 @@ Supabase Auth + PostgreSQL/PostGIS + RLS + Realtime
 | `lib/domain.ts` | Reglas de permisos, estados y señal vencida. |
 | `supabase/migrations/` | Esquema, RLS, vistas y función GPS. |
 
+## Sistema de interfaz
+
+La interfaz usa Tailwind para estructura y `src/styles.css` para los patrones visuales compartidos: cabecera, controles, formulario, tabla, panel de detalle y navegación móvil. El diseño conserva las variables de color actuales de Tailwind y sus variantes `dark`; la información de estado sigue viniendo de `statusMeta` y no está duplicada en componentes visuales.
+
+La capa de presentación no realiza consultas ni reglas de autorización. `App.tsx` mantiene sesión, datos, selección y acciones; los componentes reciben props tipadas y se limitan a representar esos datos.
+
 ## Datos y seguridad
 
 - Las tablas principales son `roles`, `users`, `cuadrillas`, `ordenes_trabajo` e `historial_ubicaciones`.
