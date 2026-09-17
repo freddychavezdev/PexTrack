@@ -85,6 +85,8 @@ El comportamiento se adaptó por tamaño de pantalla:
 
 Se reorganizó la presentación sin cambiar las capacidades ni la paleta de los temas claro y oscuro. El acceso ahora tiene una identidad de marca y campos con mejor jerarquía; la cabecera prioriza identidad, control del panel, simulador y cuenta. La tabla diferencia encabezado, cantidad de OTs, filas seleccionadas y estado. El detalle agrupa información y edición de manera más legible; en móvil se agregaron iconos a las pestañas y se respetan las áreas seguras. También se incorporaron foco visible para teclado y preferencia de movimiento reducido. Los mensajes operativos son avisos compactos y descartables, de modo que no cubren el mapa. Se corrigió además el menú nativo de los combos en tema oscuro: sus opciones usan una superficie oscura y texto de alto contraste.
 
+Al elegir una fila de OT, el marcador correspondiente ahora recibe un halo pulsante y la etiqueta `OT seleccionada`. El marcador conserva el color de su estado y pasa al frente del mapa. El efecto dura cinco segundos y se cancela al elegir otro elemento o cerrar el detalle.
+
 ## 5. Autenticación y autorización (HU-01)
 
 ### 5.1 Modo demo y modo real
@@ -124,6 +126,8 @@ Se validó que, cuando las dos OTs pertenecían a Cuadrilla 1, el Técnico asign
 ## 6. Órdenes de trabajo (HU-03)
 
 La gestión real de OTs quedó implementada mediante Supabase.
+
+Para enriquecer la demostración del tablero, se añadieron trece OTs a las dos iniciales: el conjunto queda con 15 órdenes. Las nuevas filas cubren los cinco estados, se distribuyen entre las siete cuadrillas y mantienen tres OTs sin asignar. La inserción busca las cuadrillas por nombre y no duplica códigos de OT, por lo que puede repetirse de forma segura.
 
 ### Funciones entregadas
 

@@ -12,7 +12,13 @@
 .crew-marker--stale { opacity: .52; }
 .crew-marker--stale .crew-marker__pulse { animation: none; background: rgb(100 116 139 / .35); }
 @keyframes crew-pulse { 0% { transform: scale(.82); opacity: .82; } 70%, 100% { transform: scale(1.7); opacity: 0; } }
+.order-marker { position: relative; width: 36px; height: 42px; filter: drop-shadow(0 2px 2px #0008); }
+.order-marker--highlighted { z-index: 2; filter: drop-shadow(0 3px 5px rgb(29 78 216 / .7)); }
+.order-marker__pulse { position: absolute; z-index: -1; inset: -8px -9px -6px; border: 3px solid #2563eb; border-radius: 999px; box-shadow: 0 0 0 3px rgb(255 255 255 / .9), 0 0 18px rgb(37 99 235 / .72); animation: order-highlight-pulse 1.2s ease-out infinite; }
+.order-marker__label { position: absolute; top: -29px; left: 50%; z-index: 3; transform: translateX(-50%); border-radius: 999px; background: #1d4ed8; padding: 3px 7px; color: white; font-family: system-ui, sans-serif; font-size: 10px; font-weight: 750; line-height: 1.2; white-space: nowrap; box-shadow: 0 2px 6px rgb(15 23 42 / .35); }
+@keyframes order-highlight-pulse { 0% { transform: scale(.82); opacity: 1; } 70%, 100% { transform: scale(1.35); opacity: .28; } }
 @media (prefers-reduced-motion: reduce) { .crew-marker__pulse { animation: none; } .crew-marker__vehicle { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .order-marker__pulse { animation: none; } }
 
 .login-shell { background-image: radial-gradient(circle at 50% -10%, rgb(37 99 235 / .12), transparent 38rem); }
 .login-card { border: 1px solid rgb(203 213 225 / .9); }

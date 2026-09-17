@@ -31,6 +31,8 @@ La interfaz usa Tailwind para estructura y `src/styles.css` para los patrones vi
 
 La capa de presentación no realiza consultas ni reglas de autorización. `App.tsx` mantiene sesión, datos, selección y acciones; los componentes reciben props tipadas y se limitan a representar esos datos.
 
+Al seleccionar una OT desde la tabla o el mapa, `App.tsx` entrega su ID a `MapView` como un resaltado efímero. El marcador conserva su color de estado y recibe una señal visual de selección durante cinco segundos; una nueva selección, la selección de una cuadrilla o el cierre del detalle la cancelan.
+
 ## Datos y seguridad
 
 - Las tablas principales son `roles`, `users`, `cuadrillas`, `ordenes_trabajo` e `historial_ubicaciones`.
