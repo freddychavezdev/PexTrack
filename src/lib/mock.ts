@@ -14,4 +14,9 @@ export const demoOrders: WorkOrder[] = Array.from({ length: 14 }, (_, i) => ({
   fecha_programada: new Date().toISOString().slice(0, 10), motivo_postergacion: i % 5 === 4 ? 'Cliente solicitó reprogramación' : null,
   lat: -16.49 + (i % 5) * 0.012, lng: -68.16 + Math.floor(i / 5) * 0.018,
 }))
-export const advanceCrew = (crew: Crew, step: number): Crew => ({ ...crew, lat: crew.lat + Math.sin(step + Number(crew.id.slice(5))) * 0.0007, lng: crew.lng + Math.cos(step + Number(crew.id.slice(5))) * 0.0007, heading: (crew.heading + 22) % 360, ultima_actualizacion: now() })
+const stableCrewOffset = (id: string) => Array.from(id).reduce((total, character) => total + character.charCodeAt(0), 0)
+
+export const advanceCrew = (crew: Crew, step: number): Crew => {
+  const offset = stableCrewOffset(crew.id)
+  return { ...crew, lat: crew.lat + Math.sin(step + offset) * 0.0007, lng: crew.lng + Math.cos(step + offset) * 0.0007, heading: (crew.heading + 22) % 360, ultima_actualizacion: now() }
+}

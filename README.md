@@ -1,24 +1,57 @@
 # PexTrack
 
-Tablero operativo para visualizar cuadrillas y órdenes de trabajo en La Paz/El Alto.
+Tablero web para asignar y supervisar órdenes de trabajo y cuadrillas en La Paz/El Alto.
 
-## Inicio rápido
+## Funciones MVP
 
-1. Instala dependencias: `npm install`.
-2. Copia `.env.example` a `.env.local`.
-3. Para ver el tablero sin backend, ejecuta `npm run dev`; el login ofrece perfiles de demostración y el botón **Simular GPS** mueve las siete cuadrillas.
-4. Para Supabase, crea un proyecto, agrega URL y publishable/anon key en `.env.local`, cambia `VITE_ENABLE_SUPABASE=true` y ejecuta la migración `supabase/migrations/20260916000000_initial_schema.sql` en el SQL Editor o mediante `supabase db push`.
+- Autenticación por correo/contraseña con roles `admin`, `coordinador` y `tecnico`.
+- Mapa Leaflet/OpenStreetMap con vehículos, destinos, estado de señal y actualización Realtime.
+- Gestión de estado y asignación de OTs para Admin/Coordinador; Técnico en modo consulta.
+- Simulador GPS: actualiza posición e historial cada 5 segundos.
+- Tema claro/oscuro y vista adaptable: panel+mapa en escritorio, pestañas en móvil.
 
-## Usuarios reales y semillas
+## Ejecución local
 
-No hay registro público. Crea cada usuario en **Authentication → Users** de Supabase y luego inserta su perfil en `public.users` usando el mismo UUID y uno de los roles existentes. El archivo `supabase/seed.sql` crea siete cuadrillas y dos OTs de muestra; puedes ejecutarlo después de la migración. Asigna los UUID de técnicos en `cuadrillas.tecnico_1_id`/`tecnico_2_id` para limitar su visibilidad.
+```powershell
+npm install
+Copy-Item .env.example .env.local
+npm run dev
+```
 
-Para habilitar Realtime, la migración agrega `cuadrillas` y `ordenes_trabajo` a la publicación `supabase_realtime`. Las políticas RLS restringen las filas antes de transmitir cambios.
+Para modo demo, deja `VITE_ENABLE_SUPABASE=false`. Para Supabase real, configura en `.env.local`:
 
-## Calidad y despliegue
+```env
+VITE_SUPABASE_URL=https://<proyecto>.supabase.co
+VITE_SUPABASE_ANON_KEY=<publishable-o-anon-key>
+VITE_ENABLE_SUPABASE=true
+```
 
-- `npm test` ejecuta las reglas de dominio.
-- `npm run build` verifica tipos y genera producción en `dist/`.
-- En Vercel, configura `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` como variables de entorno y usa `npm run build`.
+Nunca uses ni publiques una clave `service_role` en el frontend.
 
-Nunca expongas una `service_role` key en el frontend.
+## Configuración de Supabase
+
+1. En el SQL Editor ejecuta, en este orden:
+   - `supabase/migrations/20260916000000_initial_schema.sql`
+   - `supabase/migrations/20260917000000_dashboard_order_crew_name.sql`
+   - `supabase/migrations/20260917000001_realtime_crew_tracking.sql`
+2. Ejecuta `supabase/seed.sql` para crear las 7 cuadrillas y 2 OTs de demostración.
+3. Crea las cuentas en **Authentication → Users**. Inserta un perfil con el mismo UUID en `public.users` y asígnale un rol existente.
+4. Para cada Técnico, asigna una cuadrilla mediante `tecnico_1_id` o `tecnico_2_id`; las OTs se vinculan mediante `cuadrilla_id`.
+
+Las migraciones activan RLS y añaden `cuadrillas` y `ordenes_trabajo` a `supabase_realtime`. Si Realtime no actualiza, verifica que ambas tablas sigan incluidas en la publicación en **Database → Replication**.
+
+## Verificación
+
+```powershell
+npm run build
+npm test
+```
+
+Prueba mínima: Admin/Coordinador editan una OT; Técnico solo ve su cuadrilla; en dos sesiones, activa el simulador y confirma la actualización visible. Detén el simulador por más de 60 segundos para comprobar `señal vencida`.
+
+## Despliegue en Vercel
+
+1. Importa el repositorio de GitHub en Vercel.
+2. Framework: **Vite**; comando de build: `npm run build`; directorio de salida: `dist`.
+3. Define las tres variables `VITE_*` anteriores en Production y Preview.
+4. En Supabase Auth, agrega la URL final de Vercel a **URL Configuration → Redirect URLs**.
