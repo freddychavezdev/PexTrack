@@ -11,6 +11,7 @@
 - Interfaz refinada: acceso, cabecera, panel de OTs, detalle y pestañas móviles con foco visible, contraste y movimiento reducido respetado. Los combos nativos tienen superficie y texto legibles en tema oscuro.
 - Datos demo: 15 OTs distribuidas entre las siete cuadrillas, con tres sin asignar y estados variados para validar el tablero.
 - La OT elegida centra el mapa y muestra un resaltado temporal de cinco segundos, cancelado por una nueva interacción relevante.
+- El informe técnico consolidado para la elaboración formal está disponible en `docs/project-report.md`.
 
 ## Entornos
 

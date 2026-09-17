@@ -8,6 +8,7 @@ Tablero web para asignar y supervisar órdenes de trabajo y cuadrillas en La Paz
 - [Arquitectura](docs/architecture.md)
 - [Decisiones técnicas](docs/decisions/)
 - [Historial detallado](HISTORIAL_DESARROLLO_PEXTRACK.md)
+- [Informe técnico formal](docs/project-report.md)
 - [Reglas para agentes y asistentes](AGENTS.md)
 
 ## Funciones MVP
@@ -42,7 +43,7 @@ Nunca uses ni publiques una clave `service_role` en el frontend.
    - `supabase/migrations/20260916000000_initial_schema.sql`
    - `supabase/migrations/20260917000000_dashboard_order_crew_name.sql`
    - `supabase/migrations/20260917000001_realtime_crew_tracking.sql`
-2. Ejecuta `supabase/seed.sql` para crear las 7 cuadrillas y 2 OTs de demostración.
+2. Ejecuta `supabase/seed.sql` para crear las 7 cuadrillas y 15 OTs de demostración. Para una base ya existente, ejecuta además `supabase/migrations/20260917163636_add_demo_orders.sql` una sola vez.
 3. Crea las cuentas en **Authentication → Users**. Inserta un perfil con el mismo UUID en `public.users` y asígnale un rol existente.
 4. Para cada Técnico, asigna una cuadrilla mediante `tecnico_1_id` o `tecnico_2_id`; las OTs se vinculan mediante `cuadrilla_id`.
 

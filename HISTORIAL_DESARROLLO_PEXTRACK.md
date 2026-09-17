@@ -385,3 +385,7 @@ tests/
 `AGENTS.md` y `CLAUDE.md` contienen las mismas instrucciones. Se agregó el hook versionado `.githooks/pre-commit`, configurado mediante `scripts/setup-git-hooks.mjs` y el script npm `prepare`. Si cambia cualquiera de los dos archivos, el hook copia el contenido canónico de `AGENTS.md` a `CLAUDE.md` y lo agrega al commit. También detiene el commit si ambos archivos quedaran distintos.
 
 Las instrucciones obligan a documentar cada cambio dentro del mismo commit: arquitectura en `docs/architecture.md`, estado y validación en `docs/current-state.md`, y decisiones no triviales como ADRs en `docs/decisions/`.
+
+## 16. Informe técnico formal
+
+Se incorporó `docs/project-report.md` como documento de síntesis para preparar un informe formal. Consolida alcance, trazabilidad de requisitos, tecnologías, arquitectura, metodología, validación, incidencias, despliegue, limitaciones y próximos pasos del MVP v1.
