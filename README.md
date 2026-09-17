@@ -2,6 +2,14 @@
 
 Tablero web para asignar y supervisar órdenes de trabajo y cuadrillas en La Paz/El Alto.
 
+## Documentación
+
+- [Estado actual](docs/current-state.md)
+- [Arquitectura](docs/architecture.md)
+- [Decisiones técnicas](docs/decisions/)
+- [Historial detallado](HISTORIAL_DESARROLLO_PEXTRACK.md)
+- [Reglas para agentes y asistentes](AGENTS.md)
+
 ## Funciones MVP
 
 - Autenticación por correo/contraseña con roles `admin`, `coordinador` y `tecnico`.

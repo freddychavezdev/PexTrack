@@ -1,0 +1,11 @@
+#!/bin/sh
+# Keep the two agent instruction files byte-for-byte identical.
+if git diff --cached --name-only | grep -Eq '^(AGENTS\.md|CLAUDE\.md)$'; then
+  cp AGENTS.md CLAUDE.md
+  git add CLAUDE.md
+fi
+
+if ! cmp -s AGENTS.md CLAUDE.md; then
+  echo "AGENTS.md and CLAUDE.md must be identical."
+  exit 1
+fi

@@ -20,16 +20,16 @@ Quedaron fuera del MVP: GPS físico, ETA, rutas históricas visuales, optimizaci
 
 ## 2. Base tecnológica implementada
 
-| Área | Tecnología / decisión |
-|---|---|
-| Frontend | React 18 + TypeScript + Vite |
-| Estilos | TailwindCSS + CSS específico para mapa y marcadores |
-| Mapa | Leaflet + React Leaflet + OpenStreetMap |
-| Iconos | Lucide React y SVGs embebidos |
-| Backend | Supabase: Auth, PostgreSQL, PostGIS, RLS y Realtime |
-| Pruebas | Vitest |
-| Control de versiones | Git + GitHub |
-| Hosting | Vercel |
+| Área                 | Tecnología / decisión                               |
+| -------------------- | --------------------------------------------------- |
+| Frontend             | React 18 + TypeScript + Vite                        |
+| Estilos              | TailwindCSS + CSS específico para mapa y marcadores |
+| Mapa                 | Leaflet + React Leaflet + OpenStreetMap             |
+| Iconos               | Lucide React y SVGs embebidos                       |
+| Backend              | Supabase: Auth, PostgreSQL, PostGIS, RLS y Realtime |
+| Pruebas              | Vitest                                              |
+| Control de versiones | Git + GitHub                                        |
+| Hosting              | Vercel                                              |
 
 Se usó únicamente la clave pública/publicable de Supabase en el navegador. La clave `service_role` no se usa ni se debe publicar.
 
@@ -37,16 +37,16 @@ Se usó únicamente la clave pública/publicable de Supabase en el navegador. La
 
 La aplicación se organiza alrededor de los siguientes módulos:
 
-| Archivo / carpeta | Responsabilidad |
-|---|---|
-| `src/App.tsx` | Inicio de sesión, restauración de sesión, tablero, filtros por rol, tema y simulador. |
-| `src/components/MapView.tsx` | Mapa, vehículos, destinos, tooltip, señal vencida y enfoque de OT seleccionada. |
-| `src/components/OrdersTable.tsx` | Tabla seleccionable de órdenes de trabajo. |
-| `src/components/DetailDrawer.tsx` | Detalle de cuadrilla/OT y formulario de actualización. |
-| `src/lib/repository.ts` | Adaptador tipado de lecturas, actualizaciones, RPC GPS y suscripciones Realtime. |
-| `src/lib/supabase.ts` | Inicialización segura del cliente Supabase según variables `VITE_*`. |
-| `src/lib/mock.ts` | Datos demo y movimiento simulado de cuadrillas. |
-| `supabase/migrations/` | Esquema, vistas, políticas y funciones de base de datos. |
+| Archivo / carpeta                 | Responsabilidad                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------- |
+| `src/App.tsx`                     | Inicio de sesión, restauración de sesión, tablero, filtros por rol, tema y simulador. |
+| `src/components/MapView.tsx`      | Mapa, vehículos, destinos, tooltip, señal vencida y enfoque de OT seleccionada.       |
+| `src/components/OrdersTable.tsx`  | Tabla seleccionable de órdenes de trabajo.                                            |
+| `src/components/DetailDrawer.tsx` | Detalle de cuadrilla/OT y formulario de actualización.                                |
+| `src/lib/repository.ts`           | Adaptador tipado de lecturas, actualizaciones, RPC GPS y suscripciones Realtime.      |
+| `src/lib/supabase.ts`             | Inicialización segura del cliente Supabase según variables `VITE_*`.                  |
+| `src/lib/mock.ts`                 | Datos demo y movimiento simulado de cuadrillas.                                       |
+| `supabase/migrations/`            | Esquema, vistas, políticas y funciones de base de datos.                              |
 
 ## 4. Interfaz y experiencia de usuario
 
@@ -66,10 +66,10 @@ Se construyó una vista de operación con:
 
 El comportamiento se adaptó por tamaño de pantalla:
 
-| Dispositivo | Comportamiento |
-|---|---|
-| Escritorio | Mapa y tabla visibles simultáneamente; panel de OTs colapsable. |
-| Tablet horizontal | Distribución tipo split simplificada. |
+| Dispositivo             | Comportamiento                                                        |
+| ----------------------- | --------------------------------------------------------------------- |
+| Escritorio              | Mapa y tabla visibles simultáneamente; panel de OTs colapsable.       |
+| Tablet horizontal       | Distribución tipo split simplificada.                                 |
 | Móvil / tablet vertical | Pestañas `Mapa` y `Tabla`; detalle de OT/cuadrilla como bottom sheet. |
 
 ### 4.3 Marcadores del mapa
@@ -107,13 +107,13 @@ Si alguna variable no existe o el valor de activación no es exactamente `true`,
 
 ### 5.2 Reglas por rol
 
-| Capacidad | Admin | Coordinador | Técnico |
-|---|---:|---:|---:|
-| Ver cuadrillas y OTs | Todas | Todas | Solo su cuadrilla y sus OTs |
-| Editar estado de OT | Sí | Sí | No |
-| Asignar/reasignar cuadrilla | Sí | Sí | No |
-| Reportar posición de su cuadrilla | Sí | Sí | Sí, solo la propia |
-| Administrar cuadrillas/usuarios | Preparado para Admin | No | No |
+| Capacidad                         |                Admin | Coordinador |                     Técnico |
+| --------------------------------- | -------------------: | ----------: | --------------------------: |
+| Ver cuadrillas y OTs              |                Todas |       Todas | Solo su cuadrilla y sus OTs |
+| Editar estado de OT               |                   Sí |          Sí |                          No |
+| Asignar/reasignar cuadrilla       |                   Sí |          Sí |                          No |
+| Reportar posición de su cuadrilla |                   Sí |          Sí |          Sí, solo la propia |
+| Administrar cuadrillas/usuarios   | Preparado para Admin |          No |                          No |
 
 Se validó que, cuando las dos OTs pertenecían a Cuadrilla 1, el Técnico asignado a esa cuadrilla veía ambas. Al mover una OT a Cuadrilla 2, el Técnico de Cuadrilla 1 pasó a ver únicamente su OT correspondiente.
 
@@ -199,12 +199,12 @@ Correcciones realizadas:
 
 ### 8.1 Tablas principales
 
-| Tabla | Propósito |
-|---|---|
-| `roles` | Catálogo de Admin, Coordinador y Técnico. |
-| `users` | Perfil PexTrack vinculado uno a uno con `auth.users`. |
-| `cuadrillas` | Vehículo, técnicos asignados, posición, rumbo y estado. |
-| `ordenes_trabajo` | Cliente, dirección, tarea, estado y cuadrilla asignada. |
+| Tabla                   | Propósito                                               |
+| ----------------------- | ------------------------------------------------------- |
+| `roles`                 | Catálogo de Admin, Coordinador y Técnico.               |
+| `users`                 | Perfil PexTrack vinculado uno a uno con `auth.users`.   |
+| `cuadrillas`            | Vehículo, técnicos asignados, posición, rumbo y estado. |
+| `ordenes_trabajo`       | Cliente, dirección, tarea, estado y cuadrilla asignada. |
 | `historial_ubicaciones` | Registro de posiciones GPS por cuadrilla y OT opcional. |
 
 ### 8.2 PostGIS
@@ -267,11 +267,11 @@ También se realizaron validaciones manuales de:
 
 ## 10. Documentación creada
 
-| Archivo | Contenido |
-|---|---|
-| `README.md` | Inicio rápido, variables, migraciones, Realtime, pruebas y Vercel. |
-| `RESUMEN_PROYECTO.md` | Resumen compacto del estado MVP. |
-| `HISTORIAL_DESARROLLO_PEXTRACK.md` | Este historial extendido. |
+| Archivo                            | Contenido                                                          |
+| ---------------------------------- | ------------------------------------------------------------------ |
+| `README.md`                        | Inicio rápido, variables, migraciones, Realtime, pruebas y Vercel. |
+| `RESUMEN_PROYECTO.md`              | Resumen compacto del estado MVP.                                   |
+| `HISTORIAL_DESARROLLO_PEXTRACK.md` | Este historial extendido.                                          |
 
 ## 11. GitHub
 
@@ -283,9 +283,9 @@ Se creó y publicó el repositorio público:
 
 Historial relevante de commits:
 
-| Commit | Descripción |
-|---|---|
-| `58b1b3c` | Dashboard MVP inicial. |
+| Commit    | Descripción                                                         |
+| --------- | ------------------------------------------------------------------- |
+| `58b1b3c` | Dashboard MVP inicial.                                              |
 | `d5ae23e` | Flujo operativo del MVP: roles, OTs, GPS, Realtime y documentación. |
 
 La rama principal `main` fue sincronizada con `origin/main` luego del commit `d5ae23e`.
@@ -361,3 +361,19 @@ Para seguir desarrollando PexTrack:
 5. Ejecutar `npm run build` y `npm test` antes de cada commit.
 6. Hacer `git push origin main`; Vercel generará un despliegue nuevo automáticamente.
 
+## 15. Gobierno de documentación
+
+Se incorporó una estructura documental mantenible en la raíz del proyecto:
+
+```text
+AGENTS.md / CLAUDE.md
+docs/
+  architecture.md
+  current-state.md
+  decisions/
+tests/
+```
+
+`AGENTS.md` y `CLAUDE.md` contienen las mismas instrucciones. Se agregó el hook versionado `.githooks/pre-commit`, configurado mediante `scripts/setup-git-hooks.mjs` y el script npm `prepare`. Si cambia cualquiera de los dos archivos, el hook copia el contenido canónico de `AGENTS.md` a `CLAUDE.md` y lo agrega al commit. También detiene el commit si ambos archivos quedaran distintos.
+
+Las instrucciones obligan a documentar cada cambio dentro del mismo commit: arquitectura en `docs/architecture.md`, estado y validación en `docs/current-state.md`, y decisiones no triviales como ADRs en `docs/decisions/`.
